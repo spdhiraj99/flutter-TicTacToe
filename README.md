@@ -1,8 +1,10 @@
-# tictac
+# TicTacToe Game
+ Tic Tac Toe game made with Flutter.
+ 
+### Screenshot
+![Screenshot](ss1.PNG)
 
-A new Flutter project.
-
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+## Note
+If you want to work on this I'd suggest creating a new flutter project using
+``` flutter create <project-name> ```
+and replace *lib* folder with one present in this repo.
