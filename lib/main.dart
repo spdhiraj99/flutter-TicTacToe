@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './game/game.dart';
+import './launcher/launcher.dart';
 void main() => runApp(new TicTacToe());
 
 class TicTacToe extends StatelessWidget {
@@ -11,6 +12,10 @@ class TicTacToe extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
       ),
       home: new Game(),
+      routes: <String, WidgetBuilder> {
+        'singleGame' : (BuildContext context) => new Game(),
+        'multiplayerGame' : (BuildContext context) => new Game(),       
+      },
     );
   }
 }

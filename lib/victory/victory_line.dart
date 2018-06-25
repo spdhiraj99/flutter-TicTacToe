@@ -15,8 +15,9 @@ class VictoryLine extends CustomPainter {
   VictoryLine(Victory victory) {
     this._victory = victory;
     _paint = new Paint();
-    _paint.color = Colors.deepOrange;
-    _paint.strokeWidth = 10.0;
+    _paint.style = PaintingStyle.stroke;
+    _paint.color = Colors.redAccent;
+    _paint.strokeWidth = 14.0;
     _paint.strokeCap = StrokeCap.round;
   }
 
@@ -37,40 +38,40 @@ class VictoryLine extends CustomPainter {
 
   void _drawVerticalLine(int column, Size size, Canvas canvas) {
     if (column == 0) {
-      var x = size.width / 3 / 2 + 8.0;
+      var x = size.width / 3 / 2 ;
       var top = new Offset(x, 8.0);
-      var bottom = new Offset(x, size.height - 8.0);
+      var bottom = new Offset(x, size.height );
       canvas.drawLine(top, bottom, _paint);
     } else if (column == 1) {
       var x = size.width / 2;
       var top = new Offset(x, 8.0);
-      var bottom = new Offset(x, size.height - 8.0);
+      var bottom = new Offset(x, size.height );
       canvas.drawLine(top, bottom, _paint);
     } else {
       var columnWidth = size.width / 3;
-      var x = columnWidth * 2 + columnWidth / 2 - 8.0;
+      var x = columnWidth * 2 + columnWidth / 2 ;
       var top = new Offset(x, 8.0);
-      var bottom = new Offset(x, size.height - 8.0);
+      var bottom = new Offset(x, size.height );
       canvas.drawLine(top, bottom, _paint);
     }
   }
 
   void _drawHorizontalLine(int row, Size size, Canvas canvas) {
     if (row == 0) {
-      var y = size.height / 3 / 2 + 8.0;
+      var y = size.height / 3 / 2 ;
       var left = new Offset(8.0, y);
-      var right = new Offset(size.width - 8.0, y);
+      var right = new Offset(size.width , y);
       canvas.drawLine(left, right, _paint);
     } else if (row == 1) {
       var y = size.height / 2;
       var left = new Offset(8.0, y);
-      var right = new Offset(size.width - 8.0, y);
+      var right = new Offset(size.width , y);
       canvas.drawLine(left, right, _paint);
     } else {
       var columnHeight = size.height / 3;
-      var y = columnHeight * 2 + columnHeight / 2 - 8.0;
+      var y = columnHeight * 2 + columnHeight / 2 ;
       var left = new Offset(8.0, y);
-      var right = new Offset(size.width - 8.0, y);
+      var right = new Offset(size.width , y);
       canvas.drawLine(left, right, _paint);
     }
   }
