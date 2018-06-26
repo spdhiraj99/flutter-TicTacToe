@@ -11,7 +11,7 @@ class TicTacToe extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
-      home: new Game(),
+      home: new Launcher(),
       routes: <String, WidgetBuilder> {
         'singleGame' : (BuildContext context) => new Game(),
         'multiplayerGame' : (BuildContext context) => new Game(),       

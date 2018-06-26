@@ -1,6 +1,6 @@
 import '../game/game.dart';
 import 'dart:async';
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class Launcher extends StatefulWidget {
@@ -8,8 +8,8 @@ class Launcher extends StatefulWidget {
   LauncherState createState() => new LauncherState();
 }
 class LauncherState extends State<Launcher>{
-//  final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
-/*  @override
+  final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
+  @override
   void initState(){
     super.initState();
     _firebaseMessaging.configure(
@@ -19,13 +19,22 @@ class LauncherState extends State<Launcher>{
       },
       onLaunch: (Map<String, dynamic> message){
         print("onLaunch: $message");
-        Navigator.pushNamed(context,'singelGame');
+        Navigator.pushNamed(context,'singleGame');
       },
       onResume: (Map<String, dynamic> message){
         print("onResume: $message");
       },
     );
-  } */
+    _firebaseMessaging.getToken().then((token){
+      print(token);
+    });
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true,badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered
+    .listen((IosNotificationSettings settings){
+      print("Settings registered: $settings");
+    });
+  } 
 
   @override
   Widget build(BuildContext context){
@@ -75,4 +84,52 @@ class LauncherState extends State<Launcher>{
       ),
     );
   }
+  void _showItemDialog(BuildContext context, Map<String, dynamic> message) {
+    print(context == null);
+    print('show dialog ');
+    new Timer(const Duration(milliseconds: 200), (){
+      showDialog<bool>(
+        context: context,
+        builder: (context) {
+          return new AlertDialog(
+      content: new Text(message.toString()),
+      actions: <Widget>[
+        new FlatButton(
+          child: const Text('CLOSE'),
+          onPressed: () {
+            Navigator.pop(context, false);
+          },
+        ),
+        new FlatButton(
+          child: const Text('SHOW'),
+          onPressed: () {
+            Navigator.pop(context, true);
+          },
+        ),
+      ],
+    );
+        },
+      );
+    });
+  }
+  /*
+  Widget _buildDialog(BuildContext context) {
+    return new AlertDialog(
+      content: new Text("hello"),
+      actions: <Widget>[
+        new FlatButton(
+          child: const Text('CLOSE'),
+          onPressed: () {
+            Navigator.pop(context, false);
+          },
+        ),
+        new FlatButton(
+          child: const Text('SHOW'),
+          onPressed: () {
+            Navigator.pop(context, true);
+          },
+        ),
+      ],
+    );
+  } */
 }
